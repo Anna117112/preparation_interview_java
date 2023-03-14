@@ -107,3 +107,78 @@
 12. Что такое SOAP? Какие отличия от REST?
 13. За что отвечают аннотации @Controller и @RestController? В чём разница?
 14. Используются ли в Spring Boot сервлеты?
+
+Вебинар 7, Spring:
+
+1.  Что такое IoC и DI? 
+2.  Как DI реализован в Spring?
+3.  Что такое Spring Bean?
+4.  Какой ЖЦ у spring bean в рамках Spring Context?
+5.  Какие scope beans вы знаете? Чем они отличаются?
+6.  Какие способы внедрения бинов вы знаете? В чём разница между этими способами?
+7.  Как мы можем сказать Spring, что рассматриваемый нами класс должен являться бином?
+8.  В чем разница между аннотациями @Component @Service @Repository?
+9.  Зачем нужна аннотация @Bean? Где они используется?
+10. Какие способы взаимодействия с БД реализованы в Spring?
+11. Чем отличается JpaRepository от CrudRepository?
+12. Для чего используется аннотация @Transactional?
+13. Что такое AOP? Какие основные сущности используются в AOP?
+14. Умеет ли Spring работать с final классами?
+15. Что такое proxy и какие способы создания прокси объекта вы знаете?
+16. Какие основной паттерны использует Spring Security?
+17. Что такое Spring Boot? Какую функциональность реализует Spring Boot?
+18. За что отвечает Spring Cloud?
+
+Вебинар 8, Spring:
+
+1. Что такое сериализация, как она устроена в Java?
+2. Отличие Serializable и Externalizable
+3. Функциональные интерфейсы в Java?
+4. Лямбда выражения, что такое и для чего нужны?
+5. Что такое stream api?
+6. Что такое микросервисная архитектура? Разница между монолитом и микросервисной средой?
+
+Задача:
+У нас есть отсортированный список, который может состоять из положительных и отрицательных значений. 
+Необходимо из этого списка составить отсортированный список квадратов каждого числа.
+
+Код:
+public static void main(String[] args) {
+        int[] array = {-5, -3, 0, 1, 2, 4,5,6};
+
+        int[] result = new int[array.length];
+
+        int left = 0;
+        int inxResult = array.length - 1;
+        int right = array.length -1 ;
+
+        while (left <= right) {
+
+            if (left == right) {
+                result[inxResult] = array[left] * array[left];
+                break;
+            }
+
+            int a = array[left];
+            int b = array[right];
+
+            if (a * a < b * b) {
+                result[inxResult] = b*b;
+                right--;
+            } else if (a * a > b * b) {
+                result[inxResult] = a*a;
+                left++;
+            } else if (a * a == b * b) {
+                result[inxResult] = b*b;
+                inxResult--;
+                result[inxResult] = a*a;
+                right--;
+                left++;
+            }
+            inxResult--;
+        }
+
+        for (int i : result) {
+            System.out.println(i);
+        }
+}
